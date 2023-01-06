@@ -8,7 +8,7 @@ sudo apt install tomcat9 tomcat9-admin -y
 sudo ufw allow from any to any port 9090 proto tcp
 
 #Change the port number from 8080 to 9090
-sudo sed -i 's/Connector port ="8080"/Connector port ="8090"/lg' /etc/tomcat9/server.xml
+sudo sed -i 's/Connector port ="8080"/Connector port ="9090"/lg' /etc/tomcat9/server.xml
 
 #To set usern name and password in user.xml
 sudo sed -i '56 i   <role rolename="admin-gui"/>' /etc/tomcat9/tomcat-users.xml
