@@ -1,9 +1,9 @@
 pipeline {
     agent any
-    environment {
-        imageName = "mvn_docker"
-        BUILD_NUMBER = "${env.BUILD_NUMBER}"
-    }
+//     environment {
+//         imageName = "mvn_docker"
+//         BUILD_NUMBER = "${env.BUILD_NUMBER}"
+//     }
     stages {
         stage('clone step') {
             steps {
@@ -29,10 +29,10 @@ pipeline {
         stage('Push to Docker-Registery step') {
             steps {
                 script {
-//                     def imageName = "mvn_docker"
+                    def imageName = "mvn_docker"
                     def DOCKERHUB_USERNAME ="prasanthplavada"
-                    def imageTag = "${imageName}"
-//                     def imageTag = "${imageName}:${BUILD_NUMBER}"
+//                     def imageTag = "${imageName}"
+                    def imageTag = "${imageName}:${BUILD_NUMBER}"
                     docker.withRegistry('https://index.docker.io/v2/', 'dockerhub-creds') {
                         sh "docker images"
                         sh "docker tag ${imageTag} ${DOCKERHUB_USERNAME}/${imageTag}"
