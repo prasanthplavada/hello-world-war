@@ -5,7 +5,6 @@ pipeline {
             steps {
 //                 sh 'chmod -R /var/run/docker.sock'
                 sh 'rm -rf hello-world-war'
-                sh 'docker rm -f tom_docker'
                 sh 'git clone https://github.com/prasanthplavada/hello-world-war.git'
             }
         }
@@ -16,7 +15,8 @@ pipeline {
         }
         stage('Deploy step') {
             steps {
-                sh 'docker run -itd -p 8090:8080 --name tom_docker mvn_docker'       
+                sh 'docker run -itd -p 8090:8080 --name tom_docker mvn_docker'     
+                sh 'docker rm -f tom_docker'
             }
         }
         stage('Push to Docker-Registery step') {
