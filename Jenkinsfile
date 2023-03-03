@@ -21,11 +21,13 @@ pipeline {
         }
         stage('Push to Docker-Registery step') {
             steps {
-                sh imageName = mvn_docker
-                sh imageTag = "${imageName}:${BUILD_NUMBER}"
-                sh "docker tag ${imageTag} ${DOCKERHUB_USERNAME}/${imageTag}"
-                sh "docker push ${DOCKERHUB_USERNAME}/${imageTag}"
-//                 sh 'docker push mvn_docker:${BUILD_NUMBER}'   
+                script {
+                    def imageName = "mvn_docker"
+                    def imageTag = "${imageName}:${BUILD_NUMBER}"
+//                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-creds') {
+                        sh "docker tag ${imageTag} ${DOCKERHUB_USERNAME}/${imageTag}"
+                        sh "docker push ${DOCKERHUB_USERNAME}/${imageTag}"
+            }   
             }
         }
    } 
