@@ -21,7 +21,11 @@ pipeline {
         }
         stage('Push to Docker-Registery step') {
             steps {
-                sh 'docker push mvn_docker:${BUILD_NUMBER}'   
+                sh imageName = mvn_docker
+                sh imageTag = "${imageName}:${BUILD_NUMBER}"
+                sh "docker tag ${imageTag} ${DOCKERHUB_USERNAME}/${imageTag}"
+                sh "docker push ${DOCKERHUB_USERNAME}/${imageTag}"
+//                 sh 'docker push mvn_docker:${BUILD_NUMBER}'   
             }
         }
    } 
