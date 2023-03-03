@@ -25,7 +25,7 @@ pipeline {
                     def imageName = "mvn_docker"
                     def DOCKERHUB_USERNAME ="prasanthplavada"
                     def imageTag = "${imageName}:${BUILD_NUMBER}"
-                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-creds') {
+                    docker.withRegistry('https://hub.docker.com', 'dockerhub-creds') {
                         sh "docker images"
                         sh "docker tag ${imageTag} ${DOCKERHUB_USERNAME}/${imageTag}"
                         sh "docker push ${DOCKERHUB_USERNAME}/${imageTag}"
