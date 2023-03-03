@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Deploy step') {
             steps {
-                sh 'docker run -itd -p 8090:8090 --name tom_docker mvn_docker'       
+                sh 'docker run -itd -p 8090:8080 --name tom_docker mvn_docker'       
             }
         }
    }
