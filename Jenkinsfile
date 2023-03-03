@@ -1,34 +1,21 @@
 pipeline {
     agent any
     stages {
-        stage(' Clone & Installation') {
+        stage('clone step') {
             steps {
-                sh 'rm -rf hello-world-war' 
-                sh 'git clone https://github.com/prasanthplavada/hello-world-war.git'
-                sh 'chmod 755 ${WORKSPACE}/hello-world-war/Tomcat_install.sh'
-                sh '${WORKSPACE}/hello-world-war/Tomcat_install.sh'
+                sh 'rm -rf hello-world-war'
+                sh 'git clone https://github.com/Vikas2609/hello-world-war.git'
             }
         }
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-//                 sh 'rm -rf hello-world-war'
-//                 sh 'git clone https://github.com/prasanthplavada/hello-world-war.git'
-                dir('hello-world-war') {
-                sh 'mvn package'
+                sh 'docker build -t mvn_docker .'
                 }
-            }
         }
-        stage('SonarQube analysis') {
-            steps{
-                withSonarQubeEnv('sonarqube-8.3') { 
-                sh ''' mvn verify sonar:sonar -Dsonar.login=admin -Dsonar.password=admin'''
-                }
-            }
-       }    
-        stage ('Deploy') {
+        stage('Deploy step') {
             steps {
-                sh 'sudo cp $WORKSPACE/hello-world-war/target/hello-world-war-1.0.0.war /var/lib/tomcat9/webapps'
+                sh 'docker run -itd -p 8090:8090 --name tom_docker mvn_docker'       
             }
         }
-    }
+   }
 }
