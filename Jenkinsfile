@@ -36,7 +36,7 @@ pipeline {
                     def imageTag = "${imageName}:${BUILD_NUMBER}"
                     docker.withRegistry('https://index.docker.io/v2/', 'dockerhub-creds') {
                         sh "docker images"
-                        sh "docker tag ${imageTag} ${DOCKERHUB_USERNAME}/${imageTag}"
+                        sh "docker tag ${imageName} ${DOCKERHUB_USERNAME}/${imageTag}"
                         sh "docker push ${DOCKERHUB_USERNAME}/${imageTag}"
                     }
                 }   
