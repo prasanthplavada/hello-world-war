@@ -19,19 +19,19 @@ pipeline {
                 sh 'docker rm -f tom_docker'
             }
         }
-        stage('Push to Docker-Registery step') {
-            steps {
-                script {
-                    def imageName = "mvn_docker"
-                    def DOCKERHUB_USERNAME ="prasanthplavada"
-                    def imageTag = "${imageName}:${BUILD_NUMBER}"
-                    docker.withRegistry('https://hub.docker.com', 'dockerhub-creds') {
-                        sh "docker images"
-                        sh "docker tag ${imageTag} ${DOCKERHUB_USERNAME}/${imageTag}"
-                        sh "docker push ${DOCKERHUB_USERNAME}/${imageTag}"
-                    }
-                }   
-            }
-        }
+//         stage('Push to Docker-Registery step') {
+//             steps {
+//                 script {
+//                     def imageName = "mvn_docker"
+//                     def DOCKERHUB_USERNAME ="prasanthplavada"
+//                     def imageTag = "${imageName}:${BUILD_NUMBER}"
+//                     docker.withRegistry('https://hub.docker.com', 'dockerhub-creds') {
+//                         sh "docker images"
+//                         sh "docker tag ${imageTag} ${DOCKERHUB_USERNAME}/${imageTag}"
+//                         sh "docker push ${DOCKERHUB_USERNAME}/${imageTag}"
+//                     }
+//                 }   
+//             }
+//         }
    } 
 }
