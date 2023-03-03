@@ -4,6 +4,7 @@ pipeline {
         stage('clone step') {
             steps {
                 sh 'rm -rf hello-world-war'
+                sh 'docker rm -f tom_docker'
                 sh 'git clone https://github.com/prasanthplavada/hello-world-war.git'
             }
         }
