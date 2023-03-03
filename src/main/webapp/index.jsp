@@ -3,7 +3,7 @@
 <title>Hello World!</title>
 </head>
 <body>
-	<h1>$$$$Sonar Test$$$$</h1>
+	<h1>!!!!!!!!RUNNING PIPELINE using DOCKER!!!!!!!!!!</h1>
 	<p>
 		It is now
 		<%= new java.util.Date() %></p>
