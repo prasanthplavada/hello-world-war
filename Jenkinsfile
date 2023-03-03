@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     def imageName = "mvn_docker"
-//                     def DOCKERHUB_USERNAME ="prasanthplavada"
+                    def DOCKERHUB_USERNAME ="prasanthplavada"
                     def imageTag = "${imageName}:${BUILD_NUMBER}"
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-creds') {
                         sh "docker images"
