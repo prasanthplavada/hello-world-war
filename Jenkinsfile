@@ -29,7 +29,7 @@ pipeline {
                         sh "docker images"
                         sh "docker tag ${imageTag} ${DOCKERHUB_USERNAME}/${imageTag}"
                         sh "docker push ${DOCKERHUB_USERNAME}/${imageTag}"
-                    }
+//                     }
                 }   
             }
         }
