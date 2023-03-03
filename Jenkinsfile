@@ -18,7 +18,7 @@ pipeline {
                 sh 'docker run -itd -p 8090:8080 --name tom_docker mvn_docker'       
             }
         }
-        stage('Push to Dockerhub step') {
+        stage('Push to Docker-Registery step') {
             steps {
                 sh 'docker push mvn_docker:${BUILD_NUMBER}'   
             }
