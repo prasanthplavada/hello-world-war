@@ -31,6 +31,7 @@ pipeline {
                 script {
                     def imageName = "mvn_docker"
                     def DOCKERHUB_USERNAME ="prasanthplavada"
+                    BUILD_NUMBER = "${env.BUILD_NUMBER}"
 //                     def imageTag = "${imageName}"
                     def imageTag = "${imageName}:${BUILD_NUMBER}"
                     docker.withRegistry('https://index.docker.io/v2/', 'dockerhub-creds') {
