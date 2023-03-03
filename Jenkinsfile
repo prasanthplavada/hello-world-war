@@ -17,7 +17,7 @@ pipeline {
         stage('Deploy step') {
             steps {
                 sh 'docker run -itd -p 8090:8080 --name tomcat_docker mvn_docker'     
-                sh 'docker rm -f tomcat_docker'
+//                 sh 'docker rm -f tomcat_docker'
             }
         }
    } 
