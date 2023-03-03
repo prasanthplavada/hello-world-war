@@ -15,13 +15,13 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t ${imageName} .'
+                sh 'docker build -t mvn_docker .'
                 }
         }
         stage('Deploy step') {
             steps {
                 sh 'docker rm -f tomcat_docker'
-                sh 'docker run -itd -p 8090:8080 --name tomcat_docker ${imageName}'     
+                sh 'docker run -itd -p 8090:8080 --name tomcat_docker mvn_docker'     
                 
             }
         }
