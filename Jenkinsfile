@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('clone step') {
             steps {
-                sh 'chmod -R /var/run/docker.sock'
+//                 sh 'chmod -R /var/run/docker.sock'
                 sh 'rm -rf hello-world-war'
                 sh 'docker rm -f tom_docker'
                 sh 'git clone https://github.com/prasanthplavada/hello-world-war.git'
