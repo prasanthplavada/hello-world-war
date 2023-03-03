@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        imageName = "mvn_docker"'
+        BUILD_NUMBER = "${env.BUILD_NUMBER}"
+    }
     stages {
         stage('clone step') {
             steps {
@@ -11,13 +15,13 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t mvn_docker .'
+                sh 'docker build -t ${imageName} .'
                 }
         }
         stage('Deploy step') {
             steps {
                 sh 'docker rm -f tomcat_docker'
-                sh 'docker run -itd -p 8090:8080 --name tomcat_docker mvn_docker'     
+                sh 'docker run -itd -p 8090:8080 --name tomcat_docker ${imageName}'     
                 
             }
         }
@@ -25,7 +29,7 @@ pipeline {
         stage('Push to Docker-Registery step') {
             steps {
                 script {
-                    def imageName = "mvn_docker"
+//                     def imageName = "mvn_docker"
                     def DOCKERHUB_USERNAME ="prasanthplavada"
                     def imageTag = "${imageName}:${BUILD_NUMBER}"
                     docker.withRegistry('https://index.docker.io/v2/', 'dockerhub-creds') {
