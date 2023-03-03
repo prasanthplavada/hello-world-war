@@ -20,6 +20,7 @@ pipeline {
                 sh 'docker run -itd -p 8090:8080 --name tomcat_docker mvn_docker'     
                 
             }
+        }
         
         stage('Push to Docker-Registery step') {
             steps {
