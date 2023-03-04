@@ -1,14 +1,9 @@
 pipeline {
     agent any
-//     environment {
-//         imageName = "mvn_docker"
-//         BUILD_NUMBER = "${env.BUILD_NUMBER}"
-//     }
     stages {
         stage('clone step') {
             steps {
-//                  sh 'docker rm -f tomcat_docker'
-//                 sh 'chmod -R 777 /var/run/docker.sock'
+                sh ' sudo chmod -R 777 /var/run/docker.sock'
                 sh 'rm -rf hello-world-war'
                 sh 'git clone https://github.com/prasanthplavada/hello-world-war.git'
             }
@@ -32,7 +27,6 @@ pipeline {
                     def imageName = "mvn_docker"
                     def DOCKERHUB_USERNAME ="prasanthplavada"
                     BUILD_NUMBER = "${env.BUILD_NUMBER}"
-//                     def imageTag = "${imageName}"
                     def imageTag = "${imageName}:${BUILD_NUMBER}"
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-creds') {
                         sh "docker images"
